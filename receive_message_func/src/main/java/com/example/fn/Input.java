@@ -5,7 +5,7 @@ public class Input {
     public String partition;
     public String key;
     public String value;
-    public int offset;
+    public long offset;
     public String timestamp;
 
 }

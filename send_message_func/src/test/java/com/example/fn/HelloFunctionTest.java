@@ -5,7 +5,6 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-
 public class HelloFunctionTest {
 
     // @Rule
@@ -13,11 +12,11 @@ public class HelloFunctionTest {
 
     // @Test
     // public void shouldReturnGreeting() {
-    //     testing.givenEvent().withBody("{\"message\": \"Hello world\"}").enqueue();
-    //     testing.thenRun(HelloFunction.class, "handleRequest");
+    // testing.givenEvent().withBody("{\"message\": \"Hello world\"}").enqueue();
+    // testing.thenRun(HelloFunction.class, "handleRequest");
 
-    //     FnResult result = testing.getOnlyResult();
-    //     assertEquals("{\"status\": \"ack\"}", result.getBodyAsString());
+    // FnResult result = testing.getOnlyResult();
+    // assertEquals("{\"status\": \"ack\"}", result.getBodyAsString());
     // }
 
 }
