@@ -8,6 +8,7 @@
         <fdk.version>1.0.182</fdk.version>
         <jackson.version>2.16.0</jackson.version>
         <slf4j.version>1.7.25</slf4j.version>
+        <oci.sdk.version>3.31.0</oci.sdk.version>
     </properties>
     <groupId>com.example.fn</groupId>
     <artifactId>hello</artifactId>
@@ -40,33 +41,23 @@
         <dependency>
             <groupId>com.oracle.oci.sdk</groupId>
             <artifactId>oci-java-sdk-common</artifactId>
-            <version>3.31.0</version>
+            <version>${oci.sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>com.oracle.oci.sdk</groupId>
             <artifactId>oci-java-sdk-common-httpclient-jersey</artifactId>
-            <version>3.31.0</version>
+            <version>${oci.sdk.version}</version>
         </dependency>
         <dependency>
             <groupId>com.oracle.oci.sdk</groupId>
             <artifactId>oci-java-sdk-streaming</artifactId>
-            <version>3.31.0</version> 
+            <version>${oci.sdk.version}</version> 
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!-- <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency> -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

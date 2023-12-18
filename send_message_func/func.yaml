@@ -1,7 +1,10 @@
 schema_version: 20180708
 name: send_message_func
-version: 0.0.50
+version: 0.0.52
 runtime: java
 build_image: fnproject/fn-java-fdk-build:jdk17-1.0.182
 run_image: fnproject/fn-java-fdk:jre17-1.0.182
 cmd: com.example.fn.HelloFunction::handleRequest
+config:
+  ociMessageEndpoint: https://cell-1.streaming.us-phoenix-1.oci.oraclecloud.com
+  ociStreamOcid: ocid1.stream.oc1.phx.amaaaaaassl65iqa3scwbrnz6imvqwxmr6vzbv3xpvi46bwt5qzdlsqkcmzq

@@ -9,16 +9,15 @@ import java.util.List;
 
 public class HelloFunction {
 
-    private final Logger log = LoggerFactory.getLogger(HelloFunction.class);
+    private static Logger log = LoggerFactory.getLogger(HelloFunction.class);
 
     public String handleRequest(List<Input> input) {
-        
-        for (Input putValue : input){
+
+        for (Input putValue : input) {
             log.info(new String(Base64.getDecoder().decode(putValue.value)));
-        } 
+        }
         String decodeStr = new String(Base64.getDecoder().decode(input.get(0).value));
         return decodeStr;
     }
 
-    
 }
