@@ -18,31 +18,31 @@ import org.slf4j.LoggerFactory;
 
 public class HelloFunction {
 
-    private static Logger log = LoggerFactory.getLogger(HelloFunction.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HelloFunction.class);
 
     private String ociStreamOcid;
     private String ociMessageEndpoint;
     private StreamClient streamClient;
-    final ResourcePrincipalAuthenticationDetailsProvider provider = ResourcePrincipalAuthenticationDetailsProvider
-            .builder().build();
 
     @FnConfiguration
     public void config(RuntimeContext ctx) {
+        final ResourcePrincipalAuthenticationDetailsProvider provider = ResourcePrincipalAuthenticationDetailsProvider
+                .builder().build();
         ociStreamOcid = ctx.getConfigurationByKey("ociStreamOcid").orElse("");
         ociMessageEndpoint = ctx.getConfigurationByKey("ociMessageEndpoint").orElse("");
         streamClient = StreamClient.builder().endpoint(ociMessageEndpoint).build(provider);
     }
 
     public Response handleRequest(Input input) {
-        Response response = publishExampleMessages(streamClient, ociStreamOcid, input);
+        Response response = publishMessage(input);
         return response;
     }
 
-    private Response publishExampleMessages(StreamClient streamClient, String streamId, Input input) {
+    private Response publishMessage(Input input) {
         List<PutMessagesDetailsEntry> sendMessage = new ArrayList<>();
         sendMessage.add(PutMessagesDetailsEntry.builder().value(javaToJson(input).getBytes()).build());
         PutMessagesDetails messageDetail = PutMessagesDetails.builder().messages(sendMessage).build();
-        PutMessagesRequest putRequest = PutMessagesRequest.builder().streamId(streamId)
+        PutMessagesRequest putRequest = PutMessagesRequest.builder().streamId(ociStreamOcid)
                 .putMessagesDetails(messageDetail).build();
 
         PutMessagesResponse putResponse = streamClient.putMessages(putRequest);
@@ -56,7 +56,7 @@ public class HelloFunction {
 
     private String javaToJson(Input input) {
         try {
-            log.info("start java2json");
+            LOG.info("start java2json");
             return new ObjectMapper().writeValueAsString(input);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
