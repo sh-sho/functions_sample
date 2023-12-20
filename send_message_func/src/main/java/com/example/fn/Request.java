@@ -1,6 +1,6 @@
 package com.example.fn;
 
-public class Input {
+public class Request {
     public String message;
 
 }
