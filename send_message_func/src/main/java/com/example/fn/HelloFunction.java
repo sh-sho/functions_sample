@@ -33,14 +33,14 @@ public class HelloFunction {
         streamClient = StreamClient.builder().endpoint(ociMessageEndpoint).build(provider);
     }
 
-    public Response handleRequest(Input input) {
-        Response response = publishMessage(input);
+    public Response handleRequest(Request request) {
+        Response response = publishMessage(request);
         return response;
     }
 
-    private Response publishMessage(Input input) {
+    private Response publishMessage(Request request) {
         List<PutMessagesDetailsEntry> sendMessage = new ArrayList<>();
-        sendMessage.add(PutMessagesDetailsEntry.builder().value(javaToJson(input).getBytes()).build());
+        sendMessage.add(PutMessagesDetailsEntry.builder().value(javaToJson(request).getBytes()).build());
         PutMessagesDetails messageDetail = PutMessagesDetails.builder().messages(sendMessage).build();
         PutMessagesRequest putRequest = PutMessagesRequest.builder().streamId(ociStreamOcid)
                 .putMessagesDetails(messageDetail).build();
@@ -54,10 +54,10 @@ public class HelloFunction {
 
     }
 
-    private String javaToJson(Input input) {
+    private String javaToJson(Request request) {
         try {
             LOG.info("start java2json");
-            return new ObjectMapper().writeValueAsString(input);
+            return new ObjectMapper().writeValueAsString(request);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
